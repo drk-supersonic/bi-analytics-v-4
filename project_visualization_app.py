@@ -130,7 +130,7 @@ def apply_chart_background(fig):
     # Используем прямое обращение к layout для гарантии
     fig.layout.plot_bgcolor = "#12385C"
     fig.layout.paper_bgcolor = "#12385C"
-    
+
     # Настраиваем автоматические отступы для предотвращения обрезания текста на оси X
     # Проверяем существующие настройки margin и увеличиваем нижний отступ
     current_margin = fig.layout.margin if hasattr(fig.layout, 'margin') and fig.layout.margin else None
@@ -155,7 +155,7 @@ def apply_chart_background(fig):
             autosize=True,
             margin=dict(l=50, r=50, t=50, b=150),  # Увеличиваем нижний отступ для оси X с повернутыми подписями
         )
-    
+
     return fig
 
 
@@ -191,43 +191,43 @@ def get_russian_month_name(period_val):
 def format_dataframe_as_html(df, conditional_cols=None, column_colors=None):
     """
     Форматирует DataFrame как HTML таблицу с единым стилем.
-    
+
     Args:
         df: DataFrame для форматирования
         conditional_cols: Словарь {column_name: {'positive_color': '#ff4444', 'negative_color': '#44ff44'}}
                          для условного форматирования колонок
         column_colors: Словарь {column_name: 'color'} для установки цвета текста для колонок
-    
+
     Returns:
         HTML строка с таблицей
     """
     import html as html_module
-    
+
     if df is None or df.empty:
         return "<p>Нет данных для отображения</p>"
-    
+
     html_table = "<table style='width:100%; border-collapse: collapse; background-color: #12385C; color: #ffffff;'>"
-    
+
     # Header row
     html_table += "<thead><tr>"
     for col in df.columns:
         col_escaped = html_module.escape(str(col))
         html_table += f"<th style='border: 1px solid #ffffff; padding: 8px; background-color: rgba(18, 56, 92, 0.95);'>{col_escaped}</th>"
     html_table += "</tr></thead>"
-    
+
     # Data rows
     html_table += "<tbody>"
     for idx, row in df.iterrows():
         html_table += "<tr>"
         for col in df.columns:
             value = row[col]
-            
+
             # Check if this column needs conditional formatting
             if conditional_cols and col in conditional_cols:
                 cond_config = conditional_cols[col]
                 positive_color = cond_config.get('positive_color', '#ff4444')
                 negative_color = cond_config.get('negative_color', '#44ff44')
-                
+
                 # Conditional formatting: red if positive, green if negative or zero
                 if pd.notna(value) and isinstance(value, (int, float)):
                     if value > 0:
@@ -257,16 +257,16 @@ def format_dataframe_as_html(df, conditional_cols=None, column_colors=None):
                     formatted_value = str(value) if pd.notna(value) else ""
                     # Escape HTML special characters but preserve emojis and basic formatting
                     formatted_value = html_module.escape(str(formatted_value))
-                
+
                 # Check if this column has a specific color
                 cell_style = "border: 1px solid #ffffff; padding: 8px;"
                 if column_colors and col in column_colors:
                     cell_style += f" color: {column_colors[col]};"
-                
+
                 html_table += f"<td style='{cell_style}'>{formatted_value}</td>"
         html_table += "</tr>"
     html_table += "</tbody></table>"
-    
+
     return html_table
 
 
@@ -306,7 +306,7 @@ st.markdown(
     .stApp {
         background-color: #12385C;
     }
-    
+
     /* Стилизация хедера Streamlit - фон цвета основного фона */
     header[data-testid="stHeader"],
     .stHeader,
@@ -318,7 +318,7 @@ st.markdown(
         background-color: #12385C !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
-    
+
     /* Текст в хедере */
     header[data-testid="stHeader"] *,
     .stHeader *,
@@ -326,7 +326,7 @@ st.markdown(
     div[data-testid="stHeader"] * {
         color: #ffffff !important;
     }
-    
+
     /* Основной контент - белый текст на темном фоне */
     .main .block-container,
     .main .element-container,
@@ -335,12 +335,12 @@ st.markdown(
     .main label {
         color: #ffffff !important;
     }
-    
+
     /* Контейнеры с контентом - темный фон */
     .main .block-container {
         background-color: rgba(18, 56, 92, 0.8) !important;
     }
-    
+
     /* Стилизация полей ввода - подсветка для видимости на темном фоне */
     .stTextInput > div > div > input,
     .stTextInput > div > div > input:focus,
@@ -365,7 +365,7 @@ st.markdown(
         box-shadow: 0 0 0 2px rgba(31, 119, 180, 0.2) !important;
         outline: none !important;
     }
-    
+
     /* Стилизация кнопок - фон цвета основного фона, белый текст */
     .stButton > button {
         background-color: #12385C !important;
@@ -450,7 +450,7 @@ st.markdown(
         border: 1px solid #4a5568 !important;
         border-radius: 4px !important;
     }
-    
+
     /* Стилизация sidebar (бокового меню) - фон цвета основного фона */
     .stSidebar,
     [data-testid="stSidebar"],
@@ -462,7 +462,7 @@ st.markdown(
     div[data-testid="stSidebar"] > div {
         background-color: #12385C !important;
     }
-    
+
     /* Разделитель между sidebar и основной областью - отступ 30px от границы кнопок */
     .stSidebar,
     [data-testid="stSidebar"],
@@ -471,7 +471,7 @@ st.markdown(
         border-right: 1px solid rgba(255, 255, 255, 0.3) !important;
         padding-right: 30px !important;
     }
-    
+
     /* Текст в sidebar - белый */
     .stSidebar *,
     [data-testid="stSidebar"] *,
@@ -479,7 +479,7 @@ st.markdown(
     div[data-testid="stSidebar"] * {
         color: #ffffff !important;
     }
-    
+
     /* Стилизация таблиц (dataframes) - фон цвета основного фона с белым текстом и границами */
     /* Базовые контейнеры */
     .stDataFrame,
@@ -487,7 +487,7 @@ st.markdown(
     .dataframe {
         background-color: #12385C !important;
     }
-    
+
     /* Вложенные div элементы */
     .stDataFrame > div,
     div[data-testid="stDataFrame"] > div,
@@ -497,7 +497,7 @@ st.markdown(
     .dataframe div {
         background-color: #12385C !important;
     }
-    
+
     /* Таблицы - белый текст и белые границы */
     .stDataFrame table,
     div[data-testid="stDataFrame"] table,
@@ -507,21 +507,21 @@ st.markdown(
         border: 1px solid #ffffff !important;
         color: #ffffff !important;
     }
-    
+
     /* Заголовки таблиц */
     .stDataFrame thead,
     div[data-testid="stDataFrame"] thead,
     .dataframe thead {
         background-color: rgba(18, 56, 92, 0.95) !important;
     }
-    
+
     /* Тела таблиц */
     .stDataFrame tbody,
     div[data-testid="stDataFrame"] tbody,
     .dataframe tbody {
         background-color: #12385C !important;
     }
-    
+
     /* Строки таблиц */
     .stDataFrame tr,
     div[data-testid="stDataFrame"] tr,
@@ -529,7 +529,7 @@ st.markdown(
         background-color: #12385C !important;
         border-bottom: 1px solid #ffffff !important;
     }
-    
+
     /* Заголовки ячеек - белый текст, белые границы */
     .stDataFrame th,
     div[data-testid="stDataFrame"] th,
@@ -544,7 +544,7 @@ st.markdown(
         padding: 8px !important;
         font-weight: bold !important;
     }
-    
+
     /* Ячейки таблиц - белый текст, белые границы */
     .stDataFrame td,
     div[data-testid="stDataFrame"] td,
@@ -558,14 +558,14 @@ st.markdown(
         border-top: 1px solid #ffffff !important;
         padding: 8px !important;
     }
-    
+
     /* Четные строки */
     .stDataFrame tbody tr:nth-child(even),
     div[data-testid="stDataFrame"] tbody tr:nth-child(even),
     .dataframe tbody tr:nth-child(even) {
         background-color: rgba(18, 56, 92, 0.7) !important;
     }
-    
+
     .stDataFrame tbody tr:nth-child(even) td,
     div[data-testid="stDataFrame"] tbody tr:nth-child(even) td,
     .dataframe tbody tr:nth-child(even) td {
@@ -577,14 +577,14 @@ st.markdown(
         border-left: 1px solid #ffffff !important;
         border-top: 1px solid #ffffff !important;
     }
-    
+
     /* При наведении */
     .stDataFrame tbody tr:hover,
     div[data-testid="stDataFrame"] tbody tr:hover,
     .dataframe tbody tr:hover {
         background-color: rgba(18, 56, 92, 1) !important;
     }
-    
+
     .stDataFrame tbody tr:hover td,
     div[data-testid="stDataFrame"] tbody tr:hover td,
     .dataframe tbody tr:hover td {
@@ -596,7 +596,7 @@ st.markdown(
         border-left: 1px solid #ffffff !important;
         border-top: 1px solid #ffffff !important;
     }
-    
+
     /* Текст в таблицах - принудительно белый для всех элементов */
     /* ВАЖНО: Убираем универсальный селектор * чтобы не влиять на stDataEditor */
     .stDataFrame,
@@ -604,7 +604,7 @@ st.markdown(
     .dataframe {
         color: #ffffff !important;
     }
-    
+
     /* КРИТИЧНО: Явно устанавливаем белый цвет для stDataEditor с максимальной специфичностью */
     div[data-testid="stDataEditor"],
     div[data-testid="stDataEditor"] table,
@@ -620,7 +620,7 @@ st.markdown(
     div[data-testid="stDataEditor"] th p {
         color: #ffffff !important;
     }
-    
+
     /* Специфичные селекторы для текста в ячейках - переопределяем все возможные стили Streamlit */
     .stDataFrame td,
     .stDataFrame th,
@@ -628,7 +628,7 @@ st.markdown(
     div[data-testid="stDataFrame"] th {
         color: #ffffff !important;
     }
-    
+
     /* Вложенные элементы в ячейках - белый текст */
     /* ВАЖНО: Применяем только к конкретным элементам, не используем универсальный * */
     .stDataFrame td span,
@@ -649,7 +649,7 @@ st.markdown(
     div[data-testid="stDataFrame"] th strong {
         color: #ffffff !important;
     }
-    
+
     /* КРИТИЧНО: Явно устанавливаем белый цвет для stDataEditor с максимальной специфичностью */
     /* Эти правила должны переопределить все глобальные стили */
     div[data-testid="stDataEditor"] td span,
@@ -660,25 +660,25 @@ st.markdown(
     div[data-testid="stDataEditor"] th p {
         color: #ffffff !important;
     }
-    
+
     /* КРИТИЧНО: Переопределяем ВСЕ глобальные стили для stDataEditor с максимальной специфичностью */
     /* Эти правила должны идти ПОСЛЕ глобальных, чтобы переопределить их */
     div[data-testid="stDataEditor"],
     div[data-testid="stDataEditor"] * {
         color: #ffffff !important;
     }
-    
+
     div[data-testid="stDataEditor"] table,
     div[data-testid="stDataEditor"] table * {
         color: #ffffff !important;
         background-color: #12385C !important;
     }
-    
+
     div[data-testid="stDataEditor"] thead th,
     div[data-testid="stDataEditor"] tbody td {
         color: #ffffff !important;
     }
-    
+
     div[data-testid="stDataEditor"] td *,
     div[data-testid="stDataEditor"] th *,
     div[data-testid="stDataEditor"] td span,
@@ -687,7 +687,7 @@ st.markdown(
     div[data-testid="stDataEditor"] td label {
         color: #ffffff !important;
     }
-    
+
     /* Поля ввода в stDataEditor */
     div[data-testid="stDataEditor"] input,
     div[data-testid="stDataEditor"] select {
@@ -1125,10 +1125,10 @@ def dashboard_reasons_of_deviation(df):
 
     # Summary metrics - основная причина отклонения, процент и количество
     col1, col2, col3 = st.columns(3)
-    
+
     with col1:
         st.metric("Всего задач с отклонениями", len(filtered_df))
-    
+
     with col2:
         try:
             has_reason_col_metric = "reason of deviation" in filtered_df.columns
@@ -1152,7 +1152,7 @@ def dashboard_reasons_of_deviation(df):
                 st.metric("Основная причина отклонения", "Н/Д")
         else:
             st.metric("Основная причина отклонения", "Н/Д")
-    
+
     with col3:
         try:
             has_reason_col_metric = "reason of deviation" in filtered_df.columns
@@ -1396,7 +1396,7 @@ def dashboard_dynamics_of_deviations(df):
     group_cols = ["period"]
     has_project_col = "project name" in df.columns
     has_reason_col = "reason of deviation" in df.columns
-    
+
     if has_project_col:
         group_cols.append("project name")
     if has_reason_col:
@@ -2176,7 +2176,7 @@ def dashboard_plan_fact_dates(df):
 
         # Initialize "Процент выполнения" column
         bar_df["Процент выполнения"] = ""
-        
+
         # Calculate completion percentage if needed
         if show_completion:
             # Calculate completion percentage for each task
@@ -2222,7 +2222,7 @@ def dashboard_plan_fact_dates(df):
         # Prepare data for Plan bars
         plan_df = bar_df[bar_df["Тип"] == "План"].copy()
         fact_df = bar_df[bar_df["Тип"] == "Факт"].copy()
-        
+
         # Get unique tasks in sorted order from all data that will be displayed
         # Use tasks from fact_df if show_completion is enabled, otherwise from both
         if show_completion:
@@ -3039,10 +3039,10 @@ def dashboard_deviation_by_tasks_current_month(df):
                     "Задача",
                     "Суммарно дней отклонений",
                 ]
-                
+
                 # Filter out negative values from grouped data as well
                 detail_deviations = detail_deviations[
-                    (detail_deviations["Суммарно дней отклонений"] >= 0) | 
+                    (detail_deviations["Суммарно дней отклонений"] >= 0) |
                     (detail_deviations["Суммарно дней отклонений"].isna())
                 ]
                 detail_deviations["Отображение"] = (
@@ -4436,7 +4436,7 @@ def dashboard_budget_by_section(df):
 
     # Create horizontal bar chart with sections on Y axis
     fig = go.Figure()
-    
+
     fig.add_trace(
         go.Bar(
             y=chart_data["section"],
@@ -4505,7 +4505,7 @@ def dashboard_budget_by_section(df):
     budget_summary_display["Резервный бюджет"] = (budget_summary_display["budget fact"] - budget_summary_display["budget plan"]).round(2)
     # Remove "reserve budget" column if it exists
     budget_summary_display = budget_summary_display.drop(columns=["reserve budget"], errors="ignore")
-    
+
     # Rename columns to Russian
     rename_dict = {
         period_col: period_label,
@@ -4514,9 +4514,9 @@ def dashboard_budget_by_section(df):
         "section": "Этап"
     }
     budget_summary_display = budget_summary_display.rename(columns=rename_dict)
-    
+
     st.subheader("Сводка бюджета по периоду")
-    
+
     # Use format_dataframe_as_html with conditional formatting for reserve budget column
     conditional_cols = {
         "Резервный бюджет": {
@@ -7857,7 +7857,7 @@ def dashboard_budget_by_type(df):
                     for col in summary_hist.columns:
                         if col != "project name" and col in summary_hist.columns:
                             summary_hist[col] = (summary_hist[col] / 1_000_000).round(2)
-                    
+
                     # Add "Отклонение" column: фактический бюджет - плановый
                     if "Бюджет Факт" in summary_hist.columns and "Бюджет План" in summary_hist.columns:
                         summary_hist["Отклонение"] = (
@@ -8082,7 +8082,7 @@ def dashboard_budget_old_charts(df):
             )
 
     budget_by_type_df = pd.DataFrame(budget_melted)
-    
+
     # Convert to millions
     budget_by_type_df["Сумма_млн"] = (budget_by_type_df["Сумма"] / 1_000_000).round(2)
 
@@ -8445,7 +8445,7 @@ def dashboard_approved_budget(df):
         - 50% планового бюджета - на первый месяц этапа
         - 45% планового бюджета - равномерно распределяется между промежуточными месяцами
         - 5% планового бюджета - на последний месяц этапа
-        
+
         При изменении дат начала и окончания этапа бюджет автоматически пересчитывается.
         """
         )
@@ -8535,7 +8535,7 @@ def dashboard_approved_budget(df):
             return str(period_val)
 
     monthly_approved["Месяц"] = monthly_approved["month"].apply(format_month_display)
-    
+
     # Convert to millions
     monthly_approved["approved budget_millions"] = (monthly_approved["approved budget"] / 1_000_000).round(2)
     monthly_approved["budget plan_millions"] = (monthly_approved["budget plan"] / 1_000_000).round(2)
@@ -8660,7 +8660,7 @@ def dashboard_forecast_budget(df):
         **Прогнозный бюджет** рассчитывается на основе утвержденного бюджета и может быть скорректирован:
         - При изменении плановых дат начала и окончания этапов
         - При изменении утвержденного бюджета по задачам
-        
+
         Прогнозный бюджет автоматически пересчитывается при любых изменениях.
         """
         )
@@ -8705,16 +8705,16 @@ def dashboard_forecast_budget(df):
     if f"forecast_edit_table_{selected_project}" not in st.session_state:
         # Подготавливаем данные для редактирования в первый раз
         current_data = project_df.copy()
-        
+
         # Проверяем наличие всех необходимых колонок
         required_cols = ["task name", "section", "plan start", "plan end", "budget plan"]
         available_cols = [col for col in required_cols if col in current_data.columns]
-        
+
         if len(available_cols) < len(required_cols):
             missing = [col for col in required_cols if col not in available_cols]
             st.warning(f"Отсутствуют колонки для редактирования: {', '.join(missing)}")
             return
-        
+
         edit_df = current_data[required_cols].copy()
 
         # Конвертируем даты в datetime для корректного отображения
@@ -8741,7 +8741,7 @@ def dashboard_forecast_budget(df):
             "План. окончание",
             "Плановый бюджет",
         ]
-        
+
         # Убеждаемся, что бюджет - числовой тип
         edit_df["Плановый бюджет"] = pd.to_numeric(
             edit_df["Плановый бюджет"], errors="coerce"
@@ -8751,7 +8751,7 @@ def dashboard_forecast_budget(df):
 
     # Получаем текущую таблицу для редактирования
     edit_df = st.session_state[f"forecast_edit_table_{selected_project}"].copy()
-    
+
     # Проверяем, что таблица не пустая
     if edit_df.empty:
         st.warning("⚠️ Таблица для редактирования пуста. Попробуйте выбрать другой проект или проверьте данные.")
@@ -8766,33 +8766,33 @@ def dashboard_forecast_budget(df):
     # Это позволит избежать проблем с глобальными CSS стилями
     html_table = format_dataframe_as_html(edit_df)
     st.markdown(html_table, unsafe_allow_html=True)
-    
+
     st.info("💡 Для редактирования данных используйте форму ниже")
-    
+
     # Форма для редактирования данных
     with st.form("edit_tasks_form", clear_on_submit=False):
         st.subheader("Редактирование данных")
-        
+
         # Создаем поля для редактирования каждой задачи
         edited_data = []
         for idx, row in edit_df.iterrows():
             with st.expander(f"Задача: {row['Задача']}", expanded=False):
                 col1, col2, col3 = st.columns(3)
-                
+
                 with col1:
                     plan_start = st.date_input(
                         "План. начало",
                         value=row['План. начало'] if pd.notna(row['План. начало']) else None,
                         key=f"plan_start_{idx}"
                     )
-                
+
                 with col2:
                     plan_end = st.date_input(
                         "План. окончание",
                         value=row['План. окончание'] if pd.notna(row['План. окончание']) else None,
                         key=f"plan_end_{idx}"
                     )
-                
+
                 with col3:
                     # Преобразуем значение бюджета в float, учитывая возможную запятую как разделитель
                     budget_value = row['Плановый бюджет']
@@ -8806,14 +8806,14 @@ def dashboard_forecast_budget(df):
                             budget_value = 0.0
                     else:
                         budget_value = 0.0
-                    
+
                     budget = st.number_input(
                         "Плановый бюджет",
                         value=budget_value,
                         step=1000.0,
                         key=f"budget_{idx}"
                     )
-                
+
                 edited_data.append({
                     "Задача": row['Задача'],
                     "Раздел": row['Раздел'],
@@ -8821,21 +8821,21 @@ def dashboard_forecast_budget(df):
                     "План. окончание": plan_end,
                     "Плановый бюджет": budget
                 })
-        
+
         # Кнопки формы должны быть вне колонок для корректной работы
         submitted = st.form_submit_button("✅ Применить изменения", type="primary", use_container_width=False)
         reset_form = st.form_submit_button("🔄 Сбросить", use_container_width=False)
-        
+
         if submitted:
             # Обновляем данные
             edited_df = pd.DataFrame(edited_data)
             st.session_state[f"forecast_edit_table_{selected_project}"] = edited_df.copy()
             st.success("✅ Изменения применены!")
             st.rerun()
-    
+
     # Получаем отредактированные данные для дальнейшей обработки
     edited_df = st.session_state[f"forecast_edit_table_{selected_project}"].copy()
-    
+
     # Обновляем исходные данные проекта с учетом изменений из формы
     current_data = st.session_state[f"forecast_edited_data_{selected_project}"].copy()
     updated_data = current_data.copy().reset_index(drop=True)
@@ -8856,7 +8856,7 @@ def dashboard_forecast_budget(df):
             updated_data["budget plan"] = pd.to_numeric(
                 edited_df_reset["Плановый бюджет"], errors="coerce"
             )
-        
+
         # Сохраняем обновленные данные в session_state
         st.session_state[f"forecast_edited_data_{selected_project}"] = updated_data
 
@@ -8915,7 +8915,7 @@ def dashboard_forecast_budget(df):
             return str(period_val)
 
     monthly_forecast["Месяц"] = monthly_forecast["month"].apply(format_month_display)
-    
+
     # Convert to millions
     monthly_forecast["forecast budget_millions"] = (monthly_forecast["forecast budget"] / 1_000_000).round(2)
     monthly_forecast["budget plan_millions"] = (monthly_forecast["budget plan"] / 1_000_000).round(2)
@@ -9010,7 +9010,7 @@ def main():
             .stApp {
                 background-color: #12385C !important;
             }
-            
+
             /* Основной контент - белый текст */
             .main .block-container,
             .main .element-container,
@@ -9019,14 +9019,14 @@ def main():
             .main label {
                 color: #ffffff !important;
             }
-            
+
             .stSidebar {
                 display: none !important;
             }
             [data-testid="stSidebar"] {
                 display: none !important;
             }
-            
+
             /* Контейнер для формы авторизации - 75% ширины экрана */
             /* Используем более специфичные селекторы для переопределения Streamlit */
             section[data-testid="stAppViewContainer"] .main .block-container,
@@ -9044,7 +9044,7 @@ def main():
                 padding-top: 3rem !important;
                 padding-bottom: 3rem !important;
             }
-            
+
             /* Убеждаемся, что основной контейнер занимает всю ширину для центрирования */
             .main,
             section[data-testid="stAppViewContainer"] .main,
@@ -9053,7 +9053,7 @@ def main():
                 width: 100% !important;
                 max-width: 100% !important;
             }
-            
+
             /* Переопределяем стандартные ограничения Streamlit */
             section[data-testid="stAppViewContainer"] > div,
             div[data-testid="stAppViewContainer"] > div,
@@ -9061,7 +9061,7 @@ def main():
                 max-width: 100% !important;
                 width: 100% !important;
             }
-            
+
             /* Переопределяем для layout="wide" */
             .stApp[data-layout="wide"] .main .block-container,
             .stApp[data-layout="wide"] .main > div,
@@ -9072,13 +9072,13 @@ def main():
                 margin-left: auto !important;
                 margin-right: auto !important;
             }
-            
+
             /* Дополнительно переопределяем все возможные inline стили */
             .element-container {
                 max-width: 100% !important;
                 width: 100% !important;
             }
-            
+
             /* Центрируем форму входа */
             .stForm {
                 max-width: 100% !important;
@@ -9090,45 +9090,45 @@ def main():
                 width: 100% !important;
                 margin: 0 auto !important;
             }
-            
+
             /* Убеждаемся, что все элементы формы используют доступную ширину */
             .stForm > div {
                 max-width: 100% !important;
                 width: 100% !important;
             }
-            
+
             /* Переопределяем внутренние контейнеры Streamlit */
             [data-testid="stForm"] {
                 max-width: 100% !important;
                 width: 100% !important;
             }
-            
+
             [data-testid="stForm"] > div {
                 max-width: 100% !important;
                 width: 100% !important;
             }
-            
+
             /* Expander также 50% ширины */
             .stExpander {
                 max-width: 100% !important;
                 width: 100% !important;
             }
-            
+
             /* Центрируем колонки формы */
             [data-testid="column"] {
                 max-width: 100% !important;
             }
-            
+
             /* Центрируем заголовок и другой контент */
             h1, h2, h3, p {
                 text-align: center !important;
             }
-            
+
             /* Центрируем markdown блоки */
             .element-container {
                 max-width: 100% !important;
             }
-            
+
             /* Стилизация кнопок - фон цвета основного фона #12385C */
             .stButton > button {
                 width: 100% !important;
@@ -9321,7 +9321,7 @@ def main():
             <div style="text-align: center; margin-bottom: 2rem;">
                 <h1 style="color: #ffffff; font-size: 3rem; margin-bottom: 0.5rem;">🔐</h1>
                 <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 0.5rem;">BI Analytics</h1>
-                <p style="color: #a0a0a0; font-size: 1.1rem;">Войдите в систему для доступа к панели аналитики</p>
+                <p style="color: #a0a0a0; font-size: 1.1rem;">Войдите в систему для доступа к панели аналитики!!!fff</p>
             </div>
         """,
             unsafe_allow_html=True,
@@ -9691,16 +9691,16 @@ def main():
             st.session_state.current_dashboard = (
                 "Отклонение текущего срока от базового плана"
             )
-        
+
         # Check if dashboard was selected from sidebar menu
         dashboard_selected_from_menu = st.session_state.get(
             "dashboard_selected_from_menu", False
         )
-        
+
         # Get current dashboard from session_state - it persists across reruns
         # This ensures that when filters change, the same dashboard is shown
         current_dashboard = st.session_state.get("current_dashboard", "")
-        
+
         # If dashboard was selected (from menu or radio buttons), show only the selected dashboard
         # without the selection panels
         if current_dashboard:
@@ -10073,15 +10073,15 @@ def main():
         st.info(
             """
         👋 **Добро пожаловать в Панель аналитики проектов!**
-        
+
         Эта панель предоставляет комплексную аналитику для управления проектами:
-        
+
         **Доступные панели:**
-        
+
         **🔍 Причины отклонений:**
         - **Причины отклонений по месяцам** - Анализ причин отклонений с фильтрами по месяцу, проекту и причине
         - **Причины отклонений (по видам причин)** - Отслеживание трендов отклонений по месяцам, кварталам или годам
-        
+
         **💰 Аналитика по финансам:**
         - **БДДС по месяцам** - Анализ выполнения бюджета по периодам (накопительно или за месяц)
         - **БДДС по лотам** - Анализ выполнения бюджета по разделам и периодам
@@ -10090,17 +10090,17 @@ def main():
         - **Бюджет План/Прогноз/Факт** - Сравнение типов бюджета (План, Прогноз, Факт, Резерв) по периодам с учетом выбора типа бюджета (БДДС/БДДР)
         - **Утвержденный бюджет** - Распределение утвержденного бюджета по месяцам на основе правил
         - **Прогнозный бюджет** - Прогнозный бюджет с возможностью редактирования дат и бюджета задач
-        
+
         **📅 Отклонения от базового плана:**
         - **Отклонение текущего срока от базового плана** - Сравнение запланированных и фактических дат с диаграммами Ганта
         - **Значения отклонений от базового плана** - Просмотр отклонений по задачам и проектам за все периоды
         - **Причины отклонений по месяцам** - Анализ причин отклонений с фильтрами по месяцу, проекту и причине
         - **Причины отклонений (по видам причин)** - Отслеживание трендов отклонений по месяцам, кварталам или годам
         - **Динамика причин отклонений** - Аналитика распределения и динамики причин отклонений
-        
+
         **🔧 Прочее:**
         - **Выдача рабочей/проектной документации** - Анализ выдачи рабочей и проектной документации, включая просрочку выдачи РД
-        
+
         **Для начала работы:**
         1. Загрузите файл с данными (CSV или Excel) через боковую панель
         2. Выберите панель из меню боковой панели
