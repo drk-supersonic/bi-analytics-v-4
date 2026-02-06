@@ -9321,7 +9321,7 @@ def main():
             <div style="text-align: center; margin-bottom: 2rem;">
                 <h1 style="color: #ffffff; font-size: 3rem; margin-bottom: 0.5rem;">🔐</h1>
                 <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 0.5rem;">BI Analytics</h1>
-                <p style="color: #a0a0a0; font-size: 1.1rem;">Войдите в систему для доступа к панели аналитики!!!fff</p>
+                <p style="color: #a0a0a0; font-size: 1.1rem;">Войдите в систему для доступа к панели аналитики</p>
             </div>
         """,
             unsafe_allow_html=True,
