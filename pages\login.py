@@ -38,7 +38,7 @@ st.markdown(
     .stApp {
         background-color: #12385C !important;
     }
-    
+
     /* Стилизация хедера Streamlit - фон цвета основного фона */
     header[data-testid="stHeader"],
     .stHeader,
@@ -50,7 +50,7 @@ st.markdown(
         background-color: #12385C !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
-    
+
     /* Текст в хедере */
     header[data-testid="stHeader"] *,
     .stHeader *,
@@ -58,7 +58,7 @@ st.markdown(
     div[data-testid="stHeader"] * {
         color: #ffffff !important;
     }
-    
+
     /* Основной контент - белый текст */
     .main .block-container,
     .main .element-container,
@@ -67,7 +67,7 @@ st.markdown(
     .main label {
         color: #ffffff !important;
     }
-    
+
     /* Скрываем боковую панель на странице входа */
     .stSidebar {
         display: none !important;
@@ -79,7 +79,7 @@ st.markdown(
     [data-testid="stSidebarNav"] {
         display: none !important;
     }
-    
+
     /* Контейнер для формы авторизации - делаем еще шире */
     .main .block-container {
         max-width: 1500px !important;
@@ -87,43 +87,43 @@ st.markdown(
         padding-top: 3rem !important;
         padding-bottom: 3rem !important;
     }
-    
+
     /* Переопределяем все возможные ограничения ширины */
     .main > div {
         max-width: 1500px !important;
         width: 100% !important;
     }
-    
+
     /* Контейнер для формы входа - расширяем */
     form[data-testid="stForm"] {
         max-width: 1500px !important;
         width: 100% !important;
         margin: 0 auto !important;
     }
-    
+
     /* Убеждаемся, что все элементы формы используют доступную ширину */
     .stForm {
         max-width: 1500px !important;
         width: 100% !important;
     }
-    
+
     .stForm > div {
         max-width: 1500px !important;
         width: 100% !important;
     }
-    
+
     /* Переопределяем внутренние контейнеры Streamlit */
     [data-testid="stForm"] {
         max-width: 1500px !important;
         width: 100% !important;
     }
-    
+
     [data-testid="stForm"] > div {
         max-width: 1500px !important;
         width: 100% !important;
     }
-    
-    
+
+
     /* Стилизация полей ввода - подсветка для видимости на темном фоне */
     .stTextInput > div > div > input,
     .stTextInput > div > div > input:focus,
@@ -144,7 +144,7 @@ st.markdown(
         box-shadow: 0 0 0 2px rgba(31, 119, 180, 0.2) !important;
         outline: none !important;
     }
-    
+
     /* Стилизация кнопок - фон цвета основного фона #12385C */
     .stButton > button {
         width: 100% !important;
@@ -169,7 +169,7 @@ st.markdown(
         text-overflow: ellipsis !important;
         line-height: 1 !important;
     }
-    
+
     /* Стилизация внутренних элементов кнопки */
     .stButton > button > div,
     .stButton > button > span,
@@ -185,7 +185,7 @@ st.markdown(
         align-items: center !important;
         justify-content: center !important;
     }
-    
+
     /* Убеждаемся, что кнопки в колонках имеют одинаковую ширину и высоту */
     [data-testid="column"] .stButton > button {
         width: 100% !important;
@@ -204,7 +204,7 @@ st.markdown(
         align-items: center !important;
         justify-content: center !important;
     }
-    
+
     /* Стилизация внутренних элементов кнопки в колонках */
     [data-testid="column"] .stButton > button > div,
     [data-testid="column"] .stButton > button > span,
@@ -220,7 +220,7 @@ st.markdown(
         align-items: center !important;
         justify-content: center !important;
     }
-    
+
     /* Кнопки в формах также должны иметь одинаковую высоту и ширину */
     form .stButton > button {
         min-height: 45px !important;
@@ -237,7 +237,7 @@ st.markdown(
         align-items: center !important;
         justify-content: center !important;
     }
-    
+
     /* Стилизация внутренних элементов кнопки в формах */
     form .stButton > button > div,
     form .stButton > button > span,
@@ -253,7 +253,7 @@ st.markdown(
         align-items: center !important;
         justify-content: center !important;
     }
-    
+
     /* Дополнительно для кнопок в колонках формы входа */
     form [data-testid="column"] .stButton > button {
         width: 100% !important;
@@ -272,7 +272,7 @@ st.markdown(
         align-items: center !important;
         justify-content: center !important;
     }
-    
+
     /* Стилизация внутренних элементов кнопки в колонках формы входа */
     form [data-testid="column"] .stButton > button > div,
     form [data-testid="column"] .stButton > button > span,
@@ -344,7 +344,7 @@ st.markdown(
     <div style="text-align: center; margin-bottom: 2rem;">
         <h1 style="color: #ffffff; font-size: 3rem; margin-bottom: 0.5rem;">🔐</h1>
         <h1 style="color: #ffffff; font-size: 2rem; margin-bottom: 0.5rem;">BI Analytics</h1>
-        <p style="color: #a0a0a0; font-size: 1.1rem;">Войдите в систему для доступа к панели аналитики</p>
+        <p style="color: #a0a0a0; font-size: 1.1rem;">Войдите в систему для доступа к панели аналитики!!</p>
     </div>
 """,
     unsafe_allow_html=True,
